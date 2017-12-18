@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgofdefault"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/setting" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="个人设置"
+            android:textColor="@drawable/tv_color"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:src="@drawable/bg" />
+
+                <LinearLayout
+                    style="@style/set_textlist"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        style="@style/textright2"
+                        android:text="姓名：" />
+
+                    <TextView
+                        android:id="@+id/set_name"
+                        style="@style/textleft2"
+                        android:text="王二"
+
+                        />
+                </LinearLayout>
+
+                <LinearLayout style="@style/set_textlist">
+
+                    <TextView
+                        style="@style/textright2"
+                        android:text="工号：" />
+
+                    <TextView
+                        android:id="@+id/set_num"
+                        style="@style/textleft2"
+                        android:text="2014100001" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/car_info"
+                    style="@style/setting_menu"
+                    android:text="车辆信息" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/bgofdefault"/>
+
+                <TextView
+                    android:id="@+id/drive_record"
+                    style="@style/setting_menu"
+                    android:layout_marginTop="3dp"
+                    android:text="驾驶记录" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/bgofdefault"/>
+
+                <TextView
+                    android:id="@+id/commit_data"
+                    style="@style/setting_menu"
+                    android:layout_marginTop="3dp"
+                    android:text="提交数据" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/bgofdefault"/>
+                <TextView
+                    android:id="@+id/comply_info"
+                    style="@style/setting_menu"
+                    android:layout_marginTop="3dp"
+                    android:text="公司资讯" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/bgofdefault"/>
+                <TextView
+                    android:id="@+id/reset"
+                    style="@style/setting_menu"
+                    android:layout_marginTop="3dp"
+                    android:text="注销登录" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/quit"
+                style="@style/quitmargin"
+                android:background="@android:color/holo_red_light"
+                android:text="安全退出" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

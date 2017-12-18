@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">厂车助手</string>
+    <string name="action_settings">setting</string>
+    <string name="sunday">日</string>
+    <string name="monday">一</string>
+    <string name="thesday">二</string>
+    <string name="wednesday">三</string>
+    <string name="thursday">四</string>
+    <string name="friday">五</string>
+    <string name="saturday">六</string>
+    <string name="clear_map">Clear</string>
+    <string name="reset_map">Reset</string>
+    <string name="default_info_window">Default info window</string>
+    <string name="custom_info_contents">Custom info contents</string>
+    <string name="custom_info_window">Custom info window</string>
+    <string name="navi_start">"起    点"</string>
+    <string name="navi_end">"终    点"</string>
+    <string name="navi_foot">步行</string>
+    <string name="navibar_title">路径规划</string>
+    <string name="navi_empty_car">"驾   车"</string>
+    <string name="navi_empty_foot">"步   行"</string>
+</resources>

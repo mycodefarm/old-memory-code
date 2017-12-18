@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jimo.mvs">
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/appicon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="7ead855c4fd6bb43a19b99250145d995">//开发者申请的key
+
+        </meta-data>
+        <service
+            android:name="com.amap.api.location.APSService"></service>
+        <activity android:name="com.jimo.mvs.Welcome">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DriverActivity" />
+        <activity android:name=".StaffActivity" />
+        <activity android:name=".LostActivity" />
+        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name="calendar.MainActivity"></activity>
+        <activity android:name="com.junge.mvs.MarkerActivity"></activity>
+        <activity android:name="com.junge.mvs.NavActivity"></activity>
+        <activity android:name="com.junge.mvs.NavRoute"></activity>
+        <activity android:name="com.junge.mvs.TestNav"></activity>
+        <activity android:name="com.junge.mvs.Routeinfo"></activity>
+        <activity android:name="com.jimo.mvs.SSettingActivity"></activity>
+        <activity android:name="com.jimo.mvs.DSettingActivity"></activity>
+        <activity android:name="com.junge.mvs.Stations"></activity>
+        <activity android:name="com.junge.mvs.ComplyInfo"></activity>
+        <activity android:name="com.junge.mvs.CarRecord"></activity>
+    </application>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+</manifest>

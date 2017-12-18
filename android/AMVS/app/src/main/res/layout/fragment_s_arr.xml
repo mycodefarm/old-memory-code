@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="尚未签到请点击下方按钮签到"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/lv_arr">
+
+                <TextView
+                    style="@style/tv_arr_info"
+                    android:text="时间:" />
+
+                <TextView
+                    android:id="@+id/drive_time"
+                    style="@style/textleft"
+                    android:text="1分钟" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/lv_arr">
+
+                <TextView
+                    style="@style/tv_arr_info"
+                    android:text="距离:" />
+
+                <TextView
+                    android:id="@+id/tv_site_dis"
+                    style="@style/textleft"
+                    android:text="500m" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/lv_arr">
+
+                <TextView
+                    style="@style/tv_arr_info"
+                    android:text="站点:" />
+
+                <TextView
+                    android:id="@+id/tv_drive_dis"
+                    style="@style/textleft"
+                    android:text="电子科大站" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/lv_arr">
+
+                <TextView
+                    style="@style/tv_arr_info"
+                    android:text="线路:" />
+
+                <TextView
+                    android:id="@+id/line_name"
+                    style="@style/textleft"
+                    android:text="1号线路" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/lv_arr">
+
+                <TextView
+                    style="@style/tv_arr_info"
+                    android:text="车牌号:" />
+
+                <TextView
+                    android:id="@+id/drive_lic"
+                    style="@style/textleft"
+                    android:text="10010100" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.0"
+
+    defaultConfig {
+        applicationId "com.jimo.mvs"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "2.5.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.hannesdorfmann:swipeback:1.0.4'
+    compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'com.android.support:design:23.2.1'
+    compile 'com.android.support:cardview-v7:23.2.1'
+    compile files('jniLibs/AMap_2DMap_V2.9.0_20160525.jar')
+    compile files('jniLibs/AMap_Location_V2.2.0_20151222.jar')
+    compile files('jniLibs/AMap_Search_V3.2.1_20160308.jar')
+    compile files('jniLibs/AMap3DMap_3.3.1_AMapNavi_1.8.0_20160420.jar')
+    compile files('jniLibs/Msc.jar')
+    compile 'com.prolificinteractive:material-calendarview:1.4.0'
+}

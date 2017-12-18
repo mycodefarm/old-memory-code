@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="{CHARSET}">
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <script src="http://cache.amap.com/lbs/static/es5.min.js"></script>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=12f941dddbe64260f57468811bb77c77&plugin=AMap.DistrictSearch,AMap.PlaceSearch,AMap.AdvancedInfoWindow,AMap.Driving"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+    <title></title>
+</head>
+<body>
+<div id="container" ></div>
+<script>
+			var map = new AMap.Map('container',{resizeEnable: true,
+	 		isHotspot: true});
+			map.setCity('成都市');
+			map.setZoom(18);
+		</script>
+</body>
+
+</html>
