@@ -18,21 +18,21 @@
 ## [killone](./master/killone)
 每个人都需要学习
 
-## [contacts](https://github.com/jimolonely/java-project/tree/master/Contacts)
+## [contacts](./Contacts)
 个人通讯录，springboot+jpa(mysql)+bootstrap+art-template
 
 花2小时写的课程作业
 
-## [bowling-game](https://github.com/jimolonely/java-project/tree/master/bowling-game)
+## [bowling-game](./bowling-game)
 保龄球记分游戏,我记得全国有一千多人做过。
 
-## [compiler](https://github.com/jimolonely/java-project/tree/master/compiler)
+## [compiler](./compiler)
 java写的以C语言为例的编译器算法
 
-## [jwt-security-server](https://github.com/jimolonely/java-project/tree/master/jwt-security-server)
+## [jwt-security-server](./jwt-security-server)
 spring scurity与jwt结合使用demo
 
-## [commodity-manage](https://github.com/jimolonely/java-project/tree/master/commodity-manage)
+## [commodity-manage](./commodity-manage)
 商品管理系统基于JFrame GUI，又一次作业。。。
 
 ## [spring-boot-scalfold](./spring-boot-scalfold)
