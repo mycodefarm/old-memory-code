@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="alternate icon" type="image/png" href="assets/i/favicon.png" />
+<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+<style type="text/css">
+.p-select-color {
+	background-color: #e2e2e2;
+}
+
+.p-unselect-color {
+	background-color: #fff;
+}
+
+select {
+	background: #fff;
+	padding: 8px;
+}
+
+body {
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 6px;
+}
+
+.am-form-label {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.am-form-group {
+	padding: 0px;
+}
+
+button {
+	margin-top: 10px;
+}
+</style>
+</head>
+<body>
+	<script id="types" type="text/html"> 
+<select id="se_type" name="bookType">
+	<option value="">无</option>
+ {{each data type i}} 
+	<option value="{{type.bookType}}">{{type.bookType}}</option>
+ {{/each}} 
+</select> <span class="am-form-caret"></span>
+</script>
+	<script id="bjs" type="text/html"> 
+<select id="se_bjs" name="bjsName">
+	<option value="">无</option>
+ {{each data bjs i}} 
+	<option value="{{bjs.bjsName}}">{{bjs.bjsName}}</option>
+ {{/each}} 
+</select> <span class="am-form-caret"></span>
+</script>
+	<script id="books" type="text/html"> 
+ {{each data b i}} 
+	<tr book_id="{{b.id}}">
+				<td>{{b.bookNum}}</td>
+				<td>{{b.bookName}}</td>
+				<td>{{b.author}}</td>
+				<td>{{b.publishDate}}</td>
+				<td>{{b.bookType}}</td>
+				<td>{{b.bjsName}}</td>
+				<td>{{b.publishNum}}</td>
+				<td>{{b.bookSize}}</td>
+				<td>{{b.price}}</td>
+				<td>{{b.editMan}}</td>
+	</tr>
+ {{/each}} 
+</script>
+	<div style="height: 20%">
+		<div style="width: 20%; float: left">
+			<div id="error" style="color: red; padding-bottom: 5px;">编辑</div>
+			<form class="am-form am-form-horizontal" role="form" method="POST">
+				<div class="am-form-group">
+					<label class="am-form-label am-u-sm-4">逻辑运算符</label>
+					<div class="am-u-sm-8">
+						<select name="logic">
+							<option value="">无</option>
+							<option value="and">and</option>
+							<option value="or">or</option>
+							<option value="not">not</option>
+						</select>
+					</div>
+				</div>
+				<div class="am-form-group ">
+					<label class="am-form-label am-u-sm-4">字段</label>
+					<div class="am-u-sm-8 am-form-icon">
+						<select name="field">
+							<option value="">无</option>
+							<option value="bookNum">书号</option>
+							<option value="bookName">书名</option>
+							<option value="author">作者</option>
+							<option value="publishDate">出版时间</option>
+							<option value="bookType">图书分类</option>
+							<option value="bjsName">编辑室</option>
+							<option value="publishNum">印数</option>
+							<option value="bookSize">开版</option>
+							<option value="price">定价</option>
+							<option value="editMan">责任编辑</option>
+						</select>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label class="am-form-label am-u-sm-4">运算符</label>
+					<div class="am-u-sm-8">
+						<select name="operator">
+							<option value="">无</option>
+							<option value=">">></option>
+							<option value="<">&lt;</option>
+							<option value="=">=</option>
+							<option value=">=">>=</option>
+							<option value="<=">&lt;=</option>
+							<option value="like">like</option>
+						</select>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label class="am-form-label am-u-sm-4">值</label>
+					<div class="am-u-sm-8">
+						<input name="myvalue" type="text" class="am-form-field"
+							placeholder="">
+					</div>
+				</div>
+				<!-- <div class="am-form-group">
+				<label class="am-form-label am-u-sm-4">印数</label>
+				<div class="am-u-sm-8">
+					<input type="date" class="am-form-field am-input-md"
+						name="publishDate" placeholder="时间">
+				</div>
+			</div> -->
+			</form>
+		</div>
+		<div
+			style="width: 10%; float: left; text-align: center; margin-top: 20px;">
+			<button id="btn0" class="am-btn am-btn-default">增加条件</button>
+			<button id="btn1" class="am-btn am-btn-default">删除条件</button>
+			<button id="btn2" class="am-btn am-btn-default">清空条件</button>
+			<button id="btn3" class="am-btn am-btn-success">开始查询</button>
+		</div>
+		<div class="am-panel am-panel-default"
+			style="float: left; width: 60%; margin-top: 30px;">
+			<div class="am-panel-hd">条件集</div>
+			<div class="am-panel-bd">
+				<table class="am-table am-table-hover am-table-compact">
+					<thead>
+						<tr>
+							<th>逻辑运算符</th>
+							<th>字段</th>
+							<th>运算符</th>
+							<th>值</th>
+						</tr>
+					</thead>
+					<tbody id="tb_search">
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div style="">
+		<table class="am-table am-table-hover am-table-compact">
+			<thead>
+				<tr>
+					<th>书号</th>
+					<th>书名</th>
+					<th>作者</th>
+					<th>出版时间</th>
+					<th>图书分类</th>
+					<th>编辑室</th>
+					<th>印数</th>
+					<th>开版</th>
+					<th>定价</th>
+					<th>责任编辑</th>
+				</tr>
+			</thead>
+			<tbody id="tb_data">
+			</tbody>
+		</table>
+	</div>
+	<script th:src="@{/assets/js/jquery.min.js}"></script>
+	<script th:src="@{/assets/js/amazeui.min.js}"></script>
+	<script th:src="@{/assets/js/template-web.js}"></script>
+	<script th:src="@{/assets/mine/helper.js}"></script>
+	<script type="text/javascript">
+		var urlAdd = "/book/addBook";
+		var urlDel = "/book/delBook";
+		var urlUpdate = "/book/updateBook";
+		var urlQuery = "/book/goodQuery";
+		var urlGetOne = "/book/getOneBook";
+		var urlGetBjs = "/book/getBjs";
+		var urlGetBookType = "/book/getBookType";
+		var urlGetBooks = "/book/getBooks";
+		$(function() {
+			loadBooks();
+
+			//当表格的一行被点击时，选中该行
+			$("#tb_search").on('click', '.tr-click', function() {
+				var t = $(this);
+				$("tr").removeClass("p-select-color");
+				t.addClass("p-select-color");
+			})
+
+			//add
+			$("#btn0")
+					.on(
+							'click',
+							function() {
+								var form_data = $("form").serializeArray();
+								console.log(form_data);
+								var html = "<tr class='tr-click'>";
+								for (var i = 0; i < form_data.length; i++) {
+									var obj = form_data[i];
+									if (obj.value == "") {
+										return false;
+									}
+									html += "<td name='"+obj.name+"' value='"+obj.value+"'>"
+											+ obj.value + "</td>"
+								}
+								html += "</tr>";
+								$("#tb_search").append(html);
+								return false;
+							})
+			//delete
+			$("#btn1").on('click', function() {
+				$("#tb_search").find(".p-select-color").each(function() {
+					$(this).remove();
+				});
+				return false;
+			})
+			//query
+			$("#btn3").on('click', function() {
+				//拼接出所有条件
+				var con = "";
+				var val = "";
+				$("#tb_search").find("td").each(function() {
+					//console.log($(this).html())
+					var name = $(this).attr("name");
+					if (name == "myvalue") {
+						val += $(this).attr("value") + ",";
+						con += "? ";
+					} else {
+						con += $(this).attr("value") + " ";
+					}
+				});
+				console.log(con);
+				val = val.substring(0, val.length - 1);
+				console.log(val);
+				if (con == "" || val == "") {
+					loadBooks();
+					return false;
+				}
+				myAjax(urlQuery, {
+					"con" : con,
+					"val" : val
+				}, function(re) {
+					var html = template('books', re);
+					$("#tb_data").html(html);
+				});
+				return false;
+			})
+			//give up
+			$("#btn2").on('click', function() {
+				$("#tb_search").empty();
+				$("form")[0].reset();
+				loadBooks();
+				return false;
+			});
+		});
+		//加载书籍列表
+		function loadBooks() {
+			myAjax(urlGetBooks, {}, function(re) {
+				var html = template('books', re);
+				$("#tb_data").html(html);
+			});
+		}
+	</script>
+</body>
+</html>

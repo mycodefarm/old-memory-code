@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="alternate icon" type="image/png" href="assets/i/favicon.png" />
+<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+<link rel="stylesheet" href="assets/css/admin.css">
+<style type="text/css">
+.p-select-color {
+	background-color: #e2e2e2;
+}
+
+.p-unselect-color {
+	background-color: #fff;
+}
+
+body {
+	padding: 10px;
+}
+
+li {
+	text-align: center
+}
+</style>
+</head>
+<body style="overflow: scroll;">
+	<div class="am-g doc-am-g">
+		<div class="am-u-sm-3">
+			<div class="am-panel am-panel-success">
+				<div class="am-panel-hd">用户一览表</div>
+				<div class="am-panel-bd">
+					<ul class="am-list am-center" id="ul_user">
+					</ul>
+				</div>
+				<div class="am-panel-footer">
+					共<span id="sp_user_count">0</span>人
+				</div>
+			</div>
+		</div>
+		<div class="am-u-sm-9">
+			<div class="am-panel am-panel-default">
+				<div class="am-panel-hd">编辑用户</div>
+				<div class="am-panel-bd">
+					<form class="am-form-inline" role="form">
+						<div class="am-form-group">
+							<input id="ip_username" type="text" class="am-form-field"
+								jname='' autocomplete="off" placeholder="用户名">
+						</div>
+						<div class="am-form-group">
+							<input id="ip_password" type="text" class="am-form-field"
+								jname='' autocomplete="off" placeholder="密码">
+						</div>
+						<button id="btn_save" type="button"
+							class="am-btn am-btn-secondary">保存</button>
+						<button id="btn_reset" type="reset" class="am-btn am-btn-success">复位</button>
+						<button id="btn_delete" type="button" class="am-btn am-btn-danger">删除</button>
+					</form>
+				</div>
+			</div>
+			<div class="am-panel am-panel-default">
+				<div class="am-panel-hd">基本权限分配</div>
+				<div class="am-panel-bd" style="height: 800px;">
+					<div style="width: 40%;" class="am-fl">
+						<table
+							class="am-table am-table-centered am-table-compact am-table-bordered"
+							id="tb_not_gived_power">
+							<tr>
+								<th width="10%">功能模块</th>
+								<th width="30%">未分配功能<span class="tb_not_gived_power_body"></span>
+								</th>
+							</tr>
+							<tbody id="tb_not_gived_power_body">
+							</tbody>
+						</table>
+					</div>
+					<div class="am-fl" style="width: 15%; margin-left: 5%;">
+						<button id="btn_add_power" type="button"
+							class="am-btn am-btn-default">添加权限</button>
+						<br /> <br />
+						<button id="btn_remove_power" type="button"
+							class="am-btn am-btn-default">移除权限</button>
+					</div>
+					<div style="width: 40%;" class="am-fr">
+						<table
+							class="am-table am-table-centered am-table-compact am-table-bordered"
+							id="tb_gived_power">
+							<tr>
+								<th width="10%">功能模块</th>
+								<th width="30%">已分配功能<span class="tb_gived_power_body"></span>
+								</th>
+							</tr>
+							<tbody id="tb_gived_power_body">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- modal -->
+	<div class="am-modal am-modal-alert" tabindex="-1" id="alert_success">
+		<div class="am-modal-dialog">
+			<div class="am-modal-hd">信息</div>
+			<div class="am-modal-bd">操作成功!</div>
+		</div>
+	</div>
+
+	<!-- end modal -->
+	<script th:src="@{/assets/js/jquery.min.js}"></script>
+	<script th:src="@{/assets/js/amazeui.min.js}"></script>
+	<script th:src="@{/assets/js/app.js}"></script>
+	<script type="text/javascript">
+		loadUsers();
+
+		$("#tb_not_gived_power_body").on('click', '.p-select', function() {
+			$(this).toggleClass("p-select-color");
+		});
+
+		$("#tb_gived_power_body").on('click', '.p-select', function() {
+			$(this).toggleClass("p-select-color");
+		});
+
+		$("#btn_add_power").on('click', function() {
+			var pids = [];
+			var i = 0;
+			$("#tb_not_gived_power .p-select").each(function() {
+				var t = $(this);
+				if (t.hasClass("p-select-color")) {
+					pids[i++] = t.attr("rightID");
+				}
+			});
+			if (pids.length == 0) {
+				return;
+			}
+			/*更新权限数据库和界面*/
+			var id = $(".p-select-color").attr("userID");
+			console.log(id);
+			$.ajax({
+				url : "/user/addPower",
+				type : "post",
+				data : {
+					userId : id,
+					pids : pids
+				},
+				success : function(re) {
+					if (re.code === 2) {
+						loadPowers(id);
+					} else {
+						alert("添加失败");
+					}
+				},
+				error : function() {
+					alert("error")
+				}
+			});
+		});
+
+		/*移除权限*/
+		$("#btn_remove_power").on('click', function() {
+			var pids = [];
+			var i = 0;
+			$("#tb_gived_power .p-select").each(function() {
+				var t = $(this);
+				if (t.hasClass("p-select-color")) {
+					pids[i++] = t.attr("rightID");
+				}
+			});
+			if (pids.length == 0) {
+				return;
+			}
+			/*更新权限数据库和界面*/
+			var id = $(".p-select-color").attr("userID");
+			$.ajax({
+				url : "/user/removePower",
+				type : "post",
+				data : {
+					userId : id,
+					pids : pids
+				},
+				success : function(re) {
+					if (re.code === 3) {
+						loadPowers(id);
+					} else {
+						alert("删除权限失败");
+					}
+				},
+				error : function() {
+					alert("error")
+				}
+			});
+		});
+
+		//or $(".user-select").live()
+		$("#ul_user").on('click', ".user-select", function() {
+			$(".user-select").removeClass("p-select-color");
+			var t = $(this);
+			t.addClass("p-select-color");
+			var name = t.html();
+			var userId = t.attr("userID");
+			var pass = t.attr("pass");
+			$("#ip_username").val(name);
+			$("#ip_username").attr('jname', name);
+			$("#ip_password").val(pass);
+			$("#ip_password").attr('jname', pass);
+			/*加载对应的权限*/
+			loadPowers(userId);
+		});
+
+		/*删除用户*/
+		$("#btn_delete").on('click', function() {
+			var jname = $("#ip_username").val();
+			if (jname == '') {
+				return;
+			}
+			var r = confirm("确定要删除这位用户吗？其权限也会被删除哟！");
+			if (r == true) {
+				console.log("name=" + jname)
+				$.ajax({
+					url : "/user/deleteUser",
+					type : "post",
+					data : {
+						jusername : jname
+					},
+					success : function(re) {
+						if (re.code === 0) {
+							reset();
+							loadUsers();
+						} else {
+							alert(re.msg);
+						}
+					},
+					error : function() {
+						alert("error")
+					}
+				});
+			}
+		});
+
+		/*
+		 *保存用户
+		 */
+		$("#btn_save").on('click', function() {
+			var name = $("#ip_username").val();
+			var pass = $("#ip_password").val();
+			if (name == '' || pass == '') {
+				return;
+			}
+			$.ajax({
+				url : "/user/saveUser",
+				type : "post",
+				data : {
+					username : name,
+					password : pass
+				},
+				success : function(re) {
+					if (re.code === 2) {
+						//add success
+						loadUsers();
+						reset();
+						//$("#alert_success").modal();
+					} else if (re.code === 3) {
+						//update success
+						loadUsers();
+						$("#alert_success").modal();
+					} else {
+						alert(re.msg);
+					}
+				},
+				error : function() {
+					alert("error")
+				}
+			});
+		});
+
+		$("#btn_reset").on('click', function() {
+			reset();
+		});
+
+		function loadPowers(id) {
+			$.ajax({
+				url : "/user/getUserPowers",
+				type : "post",
+				data : {
+					userId : id
+				},
+				success : function(re) {
+					powerUI("tb_gived_power_body", re.data.havedPower);
+					powerUI("tb_not_gived_power_body", re.data.notHavedPower);
+				},
+				error : function() {
+					alert("error")
+				}
+			});
+		}
+		/*更新权限列表界面*/
+		function powerUI(tid, data) {
+			var t = $("#" + tid);
+			var total = 0;
+			t.empty();
+			for (var k = 0; k < data.length; k++) {
+				var cnt = data[k].count;
+				if (cnt > 0) {
+					var rts = data[k].rights;
+					total += rts.length;
+					t
+							.append("<tr><td rowspan='"+cnt+"' class='am-text-middle p-module'>"
+									+ rts[0].module
+									+ "</td><td class='p-select' module='"
+									+ rts[0].module
+									+ "' rightNo='"
+									+ rts[0].rightNum
+									+ "' rightID='"
+									+ rts[0].id
+									+ "'>"
+									+ rts[0].rightName + "</td></tr>");
+					for (var i = 1; i < cnt; i++) {
+						t
+								.append("<tr><td class='p-select' module='"
+								+ rts[i].module + "' rightNo='"
+								+ rts[i].rightNum + "' rightID='" + rts[i].id
+								+ "'>"
+										+ rts[i].rightName + "</td></tr>");
+					}
+				}
+			}
+			$("." + tid).html("(共" + total + "项)");
+		}
+
+		function loadUsers() {
+			$
+					.ajax({
+						url : "user/getAllUser",
+						type : "post",
+						success : function(re) {
+							var users = re.data;
+							var ul = $("#ul_user");
+							ul.empty();
+							$("#sp_user_count").html(users.length);
+							for (var i = 0; i < users.length; i++) {
+								ul
+										.append("<li><a href='javascript:;' userID='"+users[i].id+"' pass='"+users[i].password+"' class='user-select'>"
+												+ users[i].username
+												+ "</a></li>");
+							}
+						},
+						error : function() {
+							alert("error")
+						}
+					});
+		}
+		/**
+		清空权限框
+		 **/
+		function clearPowers(id) {
+			$("#" + id).empty();
+		}
+
+		function reset() {
+			$(".user-select").removeClass("p-select-color");
+			$("#ip_username").val("");
+			$("#ip_password").val("");
+			$(".tb_not_gived_power_body").html("");
+			$(".tb_gived_power_body").html("");
+			clearPowers("tb_not_gived_power_body");
+			clearPowers("tb_gived_power_body");
+		}
+	</script>
+</body>
+</html>

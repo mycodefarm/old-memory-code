@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="alternate icon" type="image/png" href="assets/i/favicon.png" />
+<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+<style type="text/css">
+.p-select-color {
+	background-color: #e2e2e2;
+}
+
+.p-unselect-color {
+	background-color: #fff;
+}
+
+select {
+	background: #fff;
+	padding: 8px;
+}
+
+body {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+</style>
+</head>
+<body>
+	<script id="types" type="text/html"> 
+<select id="se_type" name="bookTypeId">
+	<option value="">所有</option>
+ {{each data type i}} 
+	<option value="{{type}}">{{type}}</option>
+ {{/each}} 
+</select> <span class="am-form-caret"></span>
+</script>
+	<script id="books" type="text/html"> 
+ {{each data b i}} 
+	<tr class="tr-click" book_id="{{b.id}}">
+				<td>{{b.shuh}}</td>
+				<td>{{b.shum}}</td>
+				<td>{{b.zuozhe}}</td>
+				<td>{{b.tsfl}}</td>
+				<td>{{b.kb}}</td>
+				<td>{{b.cs}}</td>
+				<td>{{b.dj}}</td>
+				<td>{{b.zmy}}</td>
+	</tr>
+ {{/each}} 
+</script>
+	<hr />
+	<form class="am-form-inline" role="form" method="POST">
+
+		<div id="div_type" class="am-form-group"></div>
+
+		<button id="btn1" class="am-btn am-btn-default">查询</button>
+		<button id="btn0" style="float: right" class="am-btn am-btn-default">打印</button>
+		<button id="btn2" style="float: right; margin-right: 10px;"
+			class="am-btn am-btn-default">下载Excel</button>
+		&nbsp;&nbsp;
+	</form>
+	<hr />
+	<div id="div_print">
+		<div style="text-align: center">
+			<h2>图书库存一览表</h2>
+			报表生成时间：<span id="export_time"></span>
+		</div>
+		<table class="am-table am-table-hover am-table-compact"
+			style="font-size: 9px;">
+			<thead>
+				<tr>
+					<th>书号</th>
+					<th>书名</th>
+					<th>作者</th>
+					<th>图书分类</th>
+					<th>开本</th>
+					<th>库存</th>
+					<th>单价</th>
+					<th>总码样</th>
+				</tr>
+			</thead>
+			<tbody id="tb_data">
+			</tbody>
+		</table>
+		<div>
+			<span>制表人（签字）：</span>
+			<span style="float:right;margin-right:200px;">审核人（签字）：</span>
+		</div>
+	</div>
+	<script th:src="@{/assets/js/jquery.min.js}"></script>
+	<script th:src="@{/assets/js/amazeui.min.js}"></script>
+	<script th:src="@{/assets/js/template-web.js}"></script>
+	<script th:src="@{/assets/mine/helper.js}"></script>
+	<script th:src="@{/assets/js/jQuery.print.js}"></script>
+	<script type="text/javascript">
+		var urlGetType = "/doc/getBookType";
+		var urlGetBooks = "/doc/getBookInfos";
+		var urlDownload = "/doc/downloadExcel";
+		$(function() {
+			loadType();
+			loadBooks();
+
+			$("#btn1").on('click', function() {
+				loadBooks();
+				return false;
+			})
+
+			//print
+			$("#btn0").on('click', function() {
+				$("#div_print").print();
+				return false;
+			})
+
+			$("#btn2").on('click', function() {
+				location.href = urlDownload;
+				return false;
+			})
+		});
+		//加载书籍类型
+		function loadType() {
+			myAjax(urlGetType, {}, function(re) {
+				var html = template('types', re);
+				$("#div_type").html(html);
+			});
+		}
+		//加载书籍列表
+		function loadBooks() {
+			var type = $("#se_type").val();
+			$("#export_time").html(getNowFormatDate());
+			myAjax(urlGetBooks, {
+				type : type
+			}, function(re) {
+				var html = template('books', re);
+				$("#tb_data").html(html);
+			});
+		}
+	</script>
+</body>
+</html>

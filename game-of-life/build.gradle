@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'checkstyle'
+apply from: 'coverage.gradle'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.2.28'
+    testRuntime 'org.slf4j:slf4j-api:1.7.12'
+}
+
+jar {
+    baseName = "tdd-kata"
+    version = "0.1.0"
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+idea.project.vcs = "Git"
+
+defaultTasks 'clean', 'build'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "3.2.1"
+}

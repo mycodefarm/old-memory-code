@@ -1,0 +1,30 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jimo.dao.KillOneDao">
+    <update id="reduceNumber">
+        UPDATE killone set number=number-1 WHERE kill_id=#{killId}
+        <!--<=会和xml语法冲突-->
+        and start_time <![CDATA[ <= ]]> #{killTime}
+        and end_time >= #{killTime}
+        and number > 0
+    </update>
+
+    <select id="queryById" parameterType="long" resultType="KillOne">
+        select * from killone where kill_id=#{killId}
+    </select>
+
+    <select id="queryAll" resultType="KillOne">
+        select * from killone order by create_time desc limit #{offset},#{limit}
+    </select>
+
+    <!--调用存储过程-->
+    <select id="killByProcedure" statementType="CALLABLE">
+        call exec_killone(
+        #{killId,jdbcType=BIGINT,mode=IN},
+        #{phone,jdbcType=BIGINT,mode=IN},
+        #{killTime,jdbcType=TIMESTAMP,mode=IN},
+        #{result,jdbcType=INTEGER,mode=OUT}
+        )
+    </select>
+</mapper>

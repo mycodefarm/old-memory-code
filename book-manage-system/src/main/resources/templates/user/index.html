@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="alternate icon" type="image/png" href="assets/i/favicon.png" />
+<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+	<header class="am-topbar am-topbar-inverse admin-header">
+		<div class="am-topbar-brand">
+			<strong>BigWorld</strong> <small>后台管理</small>
+		</div>
+
+		<button
+			class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+			data-am-collapse="{target: '#topbar-collapse'}">
+			<span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span>
+		</button>
+
+		<div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+			<ul
+				class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+				<li class="am-dropdown" data-am-dropdown><a
+					class="am-dropdown-toggle" data-am-dropdown-toggle
+					href="javascript:;"> <span class="am-icon-users"></span> 管理员 <span
+						class="am-icon-caret-down"></span>
+				</a>
+					<ul class="am-dropdown-content">
+						<li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
+						<li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
+						<li><a href="#"><span class="am-icon-power-off"></span>
+								退出</a></li>
+					</ul></li>
+				<li class="am-hide-sm-only"><a href="javascript:;"
+					id="admin-fullscreen"><span class="am-icon-arrows-alt"></span>
+						<span class="admin-fullText">开启全屏</span></a></li>
+			</ul>
+		</div>
+	</header>
+
+	<div class="am-cf admin-main">
+		<!-- sidebar start -->
+		<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+			<div class="am-offcanvas-bar admin-offcanvas-bar">
+				<ul class="am-list admin-sidebar-list" id="ul_menu">
+					<li><a href="javascript:;" id="a_index"><span
+							class="am-icon-home"></span> 首页</a></li>
+				</ul>
+
+			</div>
+		</div>
+		<!-- sidebar end -->
+
+		<!-- content start -->
+		<div class="admin-content">
+			<div class="admin-content-body">
+				<div class="am-cf am-padding">
+					<div class="am-fl am-cf">
+						<strong class="am-text-primary am-text-lg" id="s_menu">首页</strong>
+						/ <small id="s_child_menu">一些常用模块</small>
+					</div>
+				</div>
+
+				<iframe id="j_content" width="100%" height="510px" frameborder="0"
+					scrolling="auto">
+					<ul
+						class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+						<li><a href="#" class="am-text-success"><span
+								class="am-icon-btn am-icon-file-text"></span><br />用户名<br /> <b
+								th:text="${username}"></b></a></li>
+						<li><a href="#" class="am-text-warning"><span
+								class="am-icon-btn am-icon-briefcase"></span><br />登录时间<br />
+								<b id="time"></b></a></li>
+						<li><a href="#" class="am-text-danger"><span
+								class="am-icon-btn am-icon-recycle"></span><br />服务器时间<br /> <b
+								th:text="${serverTime}"></b></a></li>
+					</ul>
+				</iframe>
+
+			</div>
+		</div>
+		<!-- content end -->
+	</div>
+	<!-- --------------------------page end----------------------------- -->
+	<script th:src="@{/assets/js/jquery.min.js}"></script>
+	<script th:src="@{/assets/js/amazeui.min.js}"></script>
+	<script th:src="@{/assets/js/app.js}"></script>
+	<script type="text/javascript">
+		$(function() {
+			var timeMili = new Date().getTime();
+			var time = new Date(timeMili);
+			$("#time").html(
+					time.getFullYear() + "-" + (time.getMonth() + 1) + "-"
+							+ time.getDate() + " " + (time.getHours() + 1)
+							+ ":" + (time.getMinutes() + 1) + ":"
+							+ (time.getSeconds()));
+
+			/*加载菜单*/
+			loadMenu();
+			/*跳到主页面*/
+			$("#a_index").on('click', function() {
+				location.reload();
+			});
+
+			/*点击菜单加载相应的页面*/
+			$("#ul_menu").on('click', ".a_child_menu", function() {
+				var url = $(this).attr("url");
+				var module = $(this).attr("module");
+				$("#s_menu").html(module);
+				$("#s_child_menu").html($(this).attr("rightname"));
+				//	$("#s_child_menu").html($(this).find("span:eq(1)").html());
+				console.log(url)
+
+				$("#j_content").attr("src", url)
+			});
+		});
+
+		/*加载菜单*/
+		/*
+		<li class="admin-parent"><a class="am-cf"
+						data-am-collapse="{target: '#collapse-nav'}"><span
+							class="am-icon-file"></span> 页面模块 <span
+							class="am-icon-angle-right am-fr am-margin-right"></span></a>
+						<ul class="am-list am-collapse admin-sidebar-sub am-in"
+							id="collapse-nav">
+							<li><a href="admin-user.html" class="am-cf"><span
+									class="am-icon-check"></span> 个人资料<span
+									class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+							</ul>
+			</li>*/
+		function loadMenu() {
+			var menu = $("#ul_menu");
+
+			$
+					.ajax({
+						url : "/user/getUserMenu",
+						type : "post",
+						success : function(d) {
+							var re = d.data;
+							var cnt = re.length;
+							//console.log(re)
+							for (var i = 0; i < cnt; i++) {
+								var len = re[i].rights.length;
+								if (len > 0) {
+									var nid = "collapse-nav" + i;
+									menu
+											.append("<li class='admin-parent'><a class='am-cf' data-am-collapse='{target: &quot;#"+nid+"&quot;}'><span class='am-icon-file'></span> "
+													+ re[i].rights[0].module
+													+ "<span class='am-icon-angle-right am-fr am-margin-right'></span></a><ul class='am-list am-collapse admin-sidebar-sub am-in' id='"+nid+"'></ul></li>");
+									for (var j = 0; j < len; j++) {
+										$("#" + nid)
+												.append(
+														'<li><a href="javascript:;" class="am-cf a_child_menu" url="'+re[i].rights[j].url+'" module="'+re[i].rights[j].module+'" rightname="'+re[i].rights[j].rightName+'"><span class="am-icon-check"></span> '
+																+ re[i].rights[j].rightName
+																+ '<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>');
+									}
+								}
+							}
+						},
+						error : function() {
+							alert("error")
+						}
+					});
+		}
+	</script>
+</body>
+</html>

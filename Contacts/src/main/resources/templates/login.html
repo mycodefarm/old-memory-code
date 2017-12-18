@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Login</title>
+<!-- Bootstrap core CSS -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+body {
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<hr />
+	<div class="container">
+		<form style="width: 300px; margin: 20px auto;" method="POST" action="">
+			<h3>个人通讯录管理登录</h3>
+			<label for="inputEmail" class="sr-only">Email address</label> <input
+				type="text" id="username" name="username" class="form-control"
+				placeholder="用户名" required autofocus> <label
+				for="inputPassword" class="sr-only">Password</label> <input
+				type="password" id="password" name="password" class="form-control"
+				placeholder="密码" required>
+			<div class="form-group">
+				<input type="text" class="form-control" id="code" name="code"
+					placeholder="验证码" required autofocus> <img id="imgCode"
+					alt="code" src=""> <a href="javascript:loadCode();">重新加载</a><b
+					id="error" style="color: red; margin-left: 20px;"></b>
+			</div>
+			<button id="submit" class="btn btn-lg btn-primary btn-block">登录</button>
+		</form>
+		<iframe id="id_iframe" name="nm_iframe" style="display: none;"></iframe>
+	</div>
+	<!-- /container -->
+	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		loadCode();//进入页面加载验证码
+
+		function loadCode() {
+			var time = new Date().getTime();
+			document.getElementById("imgCode").src = "/login/getCode?d=" + time;
+		}
+
+		$("#submit").on("click", function() {
+			var d = $("form").serializeArray();
+			/* var code = $("#code").val();
+			d.push({
+				"name" : "code",
+				"value" : code
+			});
+			console.log(d) */
+
+			//	return false;
+			$.ajax({
+				url : "/login/login",
+				type : "post",
+				data : d,
+				success : function(re) {
+					console.log(re)
+					if (1 == re.code) {
+						window.location.href = "/index"
+					} else {
+						$("#error").html(re.msg);
+						loadCode();
+					}
+				},
+				error : function() {
+					loadCode();
+					alert("error")
+				}
+			});
+			return false;
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="alternate icon" type="image/png" href="assets/i/favicon.png" />
+<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+<style type="text/css">
+body {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+</style>
+</head>
+<body>
+	<script id="data" type="text/html"> 
+ {{each data b i}} 
+	<tr class="tr-click">
+				<td>{{i+1}}</td>
+				<td>{{b.code}}</td>
+				<td>{{b.bookType}}</td>
+				<td><button id="btn2" did="{{b.id}}" class="am-btn am-btn-default">删除</button></td>
+	</tr>
+ {{/each}} 
+</script>
+	<h1>带编码的书籍类型管理</h1>
+	<form class="am-form-inline" role="form" method="POST">
+		<input type="hidden" value="0" name="id">
+		<div class="am-form-group">
+			<input id="type" name="bookType" type="text" class="am-form-field"
+				placeholder="书籍类型">
+		</div>
+		<div class="am-form-group">
+			<input id="code" name="code" type="text" class="am-form-field"
+				placeholder="编码">
+		</div>
+		<button id="btn0" class="am-btn am-btn-default">增加</button>
+	</form>
+	<hr />
+	<table class="am-table am-table-hover">
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>编码</th>
+				<th>书籍类型</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody id="tb_data">
+		</tbody>
+	</table>
+	<script th:src="@{/assets/js/jquery.min.js}"></script>
+	<script th:src="@{/assets/js/amazeui.min.js}"></script>
+	<script th:src="@{/assets/js/template-web.js}"></script>
+	<script th:src="@{/assets/mine/helper.js}"></script>
+	<script type="text/javascript">
+		$(function() {
+			loadBjs();
+
+			$("#tb_data").on('click', "#btn2", function() {
+				var ok = confirm("确定删除吗？不可恢复哦");
+				if (ok) {
+					var id = $(this).attr("did");
+					myAjax("/book/delBookType", {
+						id : id
+					}, function(re) {
+						loadBjs();
+					});
+				}
+			})
+
+			//add
+			$("#btn0").on('click', function() {
+				var form_data = $("form").serializeArray();
+				if (checkForm(form_data)) {
+					myAjax("/book/addBookType", form_data, function(re) {
+						$("form")[0].reset();
+						loadBjs();
+					});
+				}
+				return false;
+			})
+		});
+		function loadBjs() {
+			myAjax("/book/getBookType", {}, function(re) {
+				var html = template('data', re);
+				$("#tb_data").html(html);
+			});
+		}
+
+		//对表单提交的东西进行验证
+		function checkForm(form) {
+			for ( var i in form) {
+				var f = form[i];
+				console.log(f)
+				if (f.value == "") {
+					$("[name=" + f.name + "]").focus();
+					return false;
+				}
+			}
+			return true;
+		}
+	</script>
+</body>
+</html>

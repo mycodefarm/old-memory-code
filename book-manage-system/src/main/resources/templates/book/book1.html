@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="alternate icon" type="image/png" href="assets/i/favicon.png" />
+<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+<style type="text/css">
+.p-select-color {
+	background-color: #e2e2e2;
+}
+
+.p-unselect-color {
+	background-color: #fff;
+}
+
+select {
+	background: #fff;
+	padding: 8px;
+}
+
+body {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+</style>
+</head>
+<body>
+	<script id="types" type="text/html"> 
+<select id="se_type" name="bookTypeId">
+	<option value="">书籍类型</option>
+ {{each data type i}} 
+	<option value="{{type.id}}">{{type.bookType}}</option>
+ {{/each}} 
+</select> <span class="am-form-caret"></span>
+</script>
+	<script id="bjs" type="text/html"> 
+<select id="se_bjs" name="bjsId">
+	<option value="">编辑室</option>
+ {{each data bjs i}} 
+	<option value="{{bjs.id}}">{{bjs.bjsName}}</option>
+ {{/each}} 
+</select> <span class="am-form-caret"></span>
+</script>
+	<script id="books" type="text/html"> 
+ {{each data b i}} 
+	<tr class="tr-click" book_id="{{b.id}}">
+				<td>{{i+1}}</td>
+				<td>{{b.bookName}}</td>
+				<td>{{b.bookType}}</td>
+				<td>{{b.bjsName}}</td>
+	</tr>
+ {{/each}} 
+</script>
+	<h1>基于主键引用的图书信息管理</h1>
+	<form class="am-form-inline" role="form" method="POST">
+		<input type="hidden" value="0" name="id">
+		<div class="am-form-group">
+			<input id="book_name" book_id="" name="bookName" type="text"
+				class="am-form-field" placeholder="书名">
+		</div>
+
+		<div id="div_type" class="am-form-group"></div>
+
+		<div id="div_bjs" class="am-form-group am-form-select"></div>
+
+		<button id="btn0" class="am-btn am-btn-default">增加</button>
+		<button id="btn1" class="am-btn am-btn-default">修改</button>
+		<button id="btn2" class="am-btn am-btn-default">删除</button>
+		<button id="btn3" class="am-btn am-btn-default">查询</button>
+		<button id="btn4" class="am-btn am-btn-default">放弃</button>
+	</form>
+	<hr />
+	<table class="am-table am-table-hover">
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>书名</th>
+				<th>书籍类型</th>
+				<th>编辑室</th>
+			</tr>
+		</thead>
+		<tbody id="tb_data">
+		</tbody>
+	</table>
+	<script th:src="@{/assets/js/jquery.min.js}"></script>
+	<script th:src="@{/assets/js/amazeui.min.js}"></script>
+	<script th:src="@{/assets/js/template-web.js}"></script>
+	<script th:src="@{/assets/mine/helper.js}"></script>
+	<script type="text/javascript">
+		var urlAdd = "/book/addBook1";
+		var urlDel = "/book/delBook1";
+		var urlUpdate = "/book/updateBook1";
+		var urlQuery = "/book/query1";
+		var urlGetOne = "/book/getOneBook1";
+		var urlGetBjs = "/book/getBjs";
+		var urlGetBookType = "/book/getBookType";
+		var urlGetBooks = "/book/getBooks1";
+		$(function() {
+			//一开始时只有增加和查询可用
+			disableBtn([ 0, 1, 1, 0, 1 ]);
+
+			loadBjs();
+			loadType();
+			loadBooks();
+
+			//当表格的一行被点击时，选中该行，加载书籍到表单中，同时设置相应的按钮状态
+			$("#tb_data").on('click', ".tr-click", function() {
+				var t = $(this);
+				$("tr").removeClass("p-select-color");
+				t.addClass("p-select-color");
+				var id = t.attr("book_id");
+				addToForm(id);
+				//更新按钮
+				disableBtn([ 1, 0, 0, 0, 0 ]);
+			})
+
+			//add
+			$("#btn0").on('click', function() {
+				var form_data = $("form").serializeArray();
+				if (checkForm(form_data)) {
+					myAjax(urlAdd, form_data, function(re) {
+						$("form")[0].reset();
+						loadBooks();
+					});
+				}
+				return false;
+			})
+			//delete
+			$("#btn2").on('click', function() {
+				var ok = confirm("确定删除本书吗？不可恢复哦");
+				if (ok) {
+					var id = $("[name=id]").val();
+					myAjax(urlDel, {
+						id : id
+					}, function(re) {
+						initial();
+						loadBooks();
+					});
+				}
+				return false;
+			})
+			//update
+			$("#btn1").on('click', function() {
+				var form_data = $("form").serializeArray();
+				console.log(form_data)
+				if (checkForm(form_data)) {
+					myAjax(urlUpdate, form_data, function(re) {
+						initial();
+						loadBooks();
+					});
+				}
+				return false;
+			})
+			//query
+			$("#btn3").on('click', function() {
+				var form_data = $("form").serializeArray();
+				console.log(form_data)
+				myAjax(urlQuery, form_data, function(re) {
+					//				initial();
+					var html = template('books', re);
+					$("#tb_data").html(html);
+					disableBtn([ 0, 1, 1, 0, 0 ]);
+				});
+				return false;
+			})
+			//give up
+			$("#btn4").on('click', function() {
+				initial();
+				loadBooks();
+				return false;
+			});
+		});
+		/**加载编辑室
+		 */
+		function loadBjs() {
+			myAjax(urlGetBjs, {}, function(re) {
+				var html = template('bjs', re);
+				$("#div_bjs").html(html);
+			});
+		}
+		//加载书籍类型
+		function loadType() {
+			myAjax(urlGetBookType, {}, function(re) {
+				var html = template('types', re);
+				$("#div_type").html(html);
+			});
+		}
+		//加载书籍列表
+		function loadBooks() {
+			myAjax(urlGetBooks, {}, function(re) {
+				var html = template('books', re);
+				$("#tb_data").html(html);
+			});
+		}
+		//设置按钮禁用状态
+		function disableBtn(arr) {
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i] === 1) {
+					$("#btn" + i).attr("disabled", true);
+				} else {
+					$("#btn" + i).attr("disabled", false);
+				}
+			}
+		}
+		//根据id将书的信息加载到表单
+		function addToForm(id) {
+			myAjax(urlGetOne, {
+				id : id
+			}, function(re) {
+				var d = re.data;
+				$("#book_name").val(d.bookName);
+				$("[name=id]").val(d.id);
+				$("#se_type").val(d.bookTypeId);
+				$("#se_bjs").val(d.bjsId);
+			});
+		}
+
+		//对表单提交的东西进行验证
+		function checkForm(form) {
+			for ( var i in form) {
+				var f = form[i];
+				console.log(f)
+				if (f.value == "") {
+					$("[name=" + f.name + "]").focus();
+					return false;
+				}
+			}
+			return true;
+		}
+
+		//初始化
+		function initial() {
+			$("form")[0].reset();
+			$("tr").removeClass("p-select-color");
+			disableBtn([ 0, 1, 1, 0, 1 ]);
+		}
+	</script>
+</body>
+</html>

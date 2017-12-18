@@ -1,0 +1,17 @@
+.DS_Store
+
+/out
+/build
+/.gradle
+/.idea
+/.tmp
+
+*.class
+*.cache
+*.jar
+*.war
+*.ear
+
+*.ipr
+*.iml
+*.iws

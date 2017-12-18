@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="alternate icon" type="image/png" href="assets/i/favicon.png" />
+<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+<style>
+.header {
+	text-align: center;
+}
+
+.header h1 {
+	font-size: 200%;
+	color: #333;
+	margin-top: 30px;
+}
+
+.header p {
+	font-size: 14px;
+}
+
+#msg {
+	color: red
+}
+</style>
+</head>
+<body>
+	<div class="header">
+		<div class="am-g">
+			<h1>伟大的登录</h1>
+		</div>
+		<hr>
+	</div>
+	<div class="am-g">
+		<div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+			<!-- <h3>Big</h3>
+			<hr /> -->
+			<form method="post" class="am-form">
+				<label for="email">用户名:</label> <input type="text" name="name"
+					id="name" value="" required="required"> <label
+					for="password">密 码:</label> <input type="password" name="pass"
+					id="pass" value="" required="required" /> <label for="remember-me">
+					选择登录日期: </label> <select data-am-selected="{btnSize: 'sm'}" id="date"
+					name="date">
+					<option th:each="d:${dates}" th:value="${d}" th:text="${d}"></option>
+				</select> <br />
+				<div class="am-cf">
+					<input type="submit" id='btn_submit' name="" value="登 录"
+						class="am-btn am-btn-primary am-btn-sm am-fl" />
+				</div>
+			</form>
+			<hr />
+			<p id="msg">© 2017 AllMobilize, Inc. Licensed under MIT license.</p>
+		</div>
+	</div>
+	<script th:src="@{/assets/js/jquery.min.js}"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("form").submit(function(e) {
+				$.ajax({
+					url : "/user/login",
+					type : "POST",
+					data : $("form").serializeArray(),
+					success : function(re) {
+						if (re.code == 0) {
+							window.location.href = "/index";
+						} else {
+							$("#msg").html(re.msg);
+						}
+					},
+					error : function() {
+						alert("error");
+					}
+				});
+				return false;
+			});
+		});
+	</script>
+</body>
+</html>
