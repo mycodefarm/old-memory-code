@@ -1,0 +1,47 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: CG2014112135_2 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\Administrator\AppData\Local\Temp\RSP9627.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/CG2014112135_2.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\CG\CG2014112135_2\CG2014112135_2View.cpp"
+]
+Creating command line "cl.exe @C:\Users\Administrator\AppData\Local\Temp\RSP9627.tmp" 
+Creating temporary file "C:\Users\Administrator\AppData\Local\Temp\RSP9628.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/CG2014112135_2.pdb" /debug /machine:I386 /out:"Debug/CG2014112135_2.exe" /pdbtype:sept 
+.\Debug\CG2014112135_2.obj
+.\Debug\CG2014112135_2Doc.obj
+.\Debug\CG2014112135_2View.obj
+.\Debug\ChildFrm.obj
+.\Debug\MainFrm.obj
+.\Debug\MyCDC.obj
+.\Debug\StdAfx.obj
+.\Debug\CG2014112135_2.res
+]
+Creating command line "link.exe @C:\Users\Administrator\AppData\Local\Temp\RSP9628.tmp"
+<h3>Output Window</h3>
+Compiling...
+CG2014112135_2View.cpp
+C:\CG\CG2014112135_2\CG2014112135_2View.cpp(156) : warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+C:\CG\CG2014112135_2\CG2014112135_2View.cpp(160) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\CG\CG2014112135_2\CG2014112135_2View.cpp(161) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\CG\CG2014112135_2\CG2014112135_2View.cpp(163) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\CG\CG2014112135_2\CG2014112135_2View.cpp(164) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/CG2014112135_2.bsc"  .\Debug\StdAfx.sbr .\Debug\CG2014112135_2.sbr .\Debug\CG2014112135_2Doc.sbr .\Debug\CG2014112135_2View.sbr .\Debug\ChildFrm.sbr .\Debug\MainFrm.sbr .\Debug\MyCDC.sbr"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+CG2014112135_2.exe - 0 error(s), 5 warning(s)
+</pre>
+</body>
+</html>

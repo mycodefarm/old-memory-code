@@ -1,0 +1,48 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: CG_2014112135_04 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\Administrator\AppData\Local\Temp\RSP2F6A.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/CG_2014112135_04.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\CG\CG_2014112135_04\ListDialog.cpp"
+]
+Creating command line "cl.exe @C:\Users\Administrator\AppData\Local\Temp\RSP2F6A.tmp" 
+Creating temporary file "C:\Users\Administrator\AppData\Local\Temp\RSP2F6B.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/CG_2014112135_04.pdb" /debug /machine:I386 /out:"Debug/CG_2014112135_04.exe" /pdbtype:sept 
+.\Debug\CG_2014112135_04.obj
+.\Debug\CG_2014112135_04Doc.obj
+.\Debug\CG_2014112135_04View.obj
+.\Debug\GCircle.obj
+.\Debug\GCircleDialog.obj
+.\Debug\GLine.obj
+.\Debug\GPolygon.obj
+.\Debug\GShape.obj
+.\Debug\LineDialog.obj
+.\Debug\ListDialog.obj
+.\Debug\MainFrm.obj
+.\Debug\RotationDialog.obj
+.\Debug\ScaleDialog.obj
+.\Debug\StdAfx.obj
+.\Debug\TranslateDialog.obj
+.\Debug\CG_2014112135_04.res
+.\Debug\ShearDialog.obj
+]
+Creating command line "link.exe @C:\Users\Administrator\AppData\Local\Temp\RSP2F6B.tmp"
+<h3>Output Window</h3>
+Compiling...
+ListDialog.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+CG_2014112135_04.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

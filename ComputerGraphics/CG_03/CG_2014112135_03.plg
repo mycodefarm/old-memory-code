@@ -1,0 +1,144 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: CG_2014112135_03 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\Administrator\AppData\Local\Temp\RSPA5D4.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/CG_2014112135_03.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp"
+]
+Creating command line "cl.exe @C:\Users\Administrator\AppData\Local\Temp\RSPA5D4.tmp" 
+Creating temporary file "C:\Users\Administrator\AppData\Local\Temp\RSPA5D5.tmp" with contents
+[
+opengl32.lib glu32.lib glut32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/CG_2014112135_03.pdb" /debug /machine:I386 /out:"Debug/CG_2014112135_03.exe" /pdbtype:sept 
+.\Debug\CG_2014112135_03.obj
+.\Debug\CG_2014112135_03Doc.obj
+.\Debug\CG_2014112135_03View.obj
+.\Debug\MainFrm.obj
+.\Debug\StdAfx.obj
+.\Debug\CG_2014112135_03.res
+]
+Creating command line "link.exe @C:\Users\Administrator\AppData\Local\Temp\RSPA5D5.tmp"
+<h3>Output Window</h3>
+Compiling...
+CG_2014112135_03View.cpp
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(337) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(337) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(339) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(339) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(341) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(341) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(342) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(342) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(343) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(343) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(344) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(344) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(345) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(354) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(354) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(355) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(355) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(357) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(357) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(358) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(358) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(365) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(365) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(366) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(366) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(367) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(367) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(369) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(370) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(379) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(379) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(380) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(380) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(381) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(381) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(383) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(384) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(384) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(393) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(393) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(394) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(395) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(395) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(396) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(397) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(399) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(399) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(400) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(400) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(401) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(401) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(403) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(412) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(412) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(413) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(413) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(414) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(414) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(416) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(417) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(417) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(418) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(418) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(420) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(421) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(421) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(422) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(422) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(424) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(425) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(434) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(434) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(435) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(436) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(437) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(437) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(439) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(439) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(440) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(440) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(441) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(441) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(442) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(442) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(451) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(451) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(453) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(453) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(454) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(454) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(455) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(455) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(467) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(467) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(468) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(468) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(469) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(469) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(470) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(470) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(471) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(471) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(473) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(473) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(474) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\CG\CG_2014112135_03\CG_2014112135_03View.cpp(474) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+Linking...
+LINK : LNK6004: Debug/CG_2014112135_03.exe not found or not built by the last incremental link; performing full link
+
+
+
+<h3>Results</h3>
+CG_2014112135_03.exe - 0 error(s), 106 warning(s)
+</pre>
+</body>
+</html>
