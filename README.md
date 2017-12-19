@@ -92,3 +92,10 @@ python相关的练习
 [auto_lun_rdm](./python/auto_lun_rdm)
 
 一个针对华为OceanStor存储和vmware的虚拟机平台，执行创建LUN和将这些LUN映射成RDM盘再分配给指定的虚拟机的自动化程序。
+
+# other
+
+[algorithm](./other/algorithm)
+
+<<算法导论>>的java实现代码与测试.
+
