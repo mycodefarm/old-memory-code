@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="swjtu.park.MainActivity" >
+
+    <item
+        android:id="@+id/item_location"
+        android:title="@string/location"/>
+ <!-- <item
+        android:id="@+id/item_mode_normal"
+        android:title="普通模式"/>
+    <item
+        android:id="@+id/item_mode_compass"
+        android:title="罗盘模式"/>
+    <item
+        android:id="@+id/item_mode_follow"
+        android:title="跟随模式"/>
+
+    <item android:id="@+id/item_add_overlay"
+        android:title="添加覆盖"/>-->
+    
+    <item android:id="@+id/item_baidu_cordi"
+        android:title="导航模拟"/>
+    
+</menu>

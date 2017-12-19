@@ -1,0 +1,1 @@
+基于socket双向通信的Android程序，服务器和客户端都在一个APP里

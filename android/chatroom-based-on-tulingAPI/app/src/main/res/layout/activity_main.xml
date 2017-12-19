@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jimo.jimoqx.MainActivity">
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/rl_top"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+
+        <!--android:background="#000"-->
+        <!--&gt;-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="JimoQX"-->
+            <!--android:textSize="24sp"-->
+            <!--android:textColor="#fff"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--/>-->
+    <!--</RelativeLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/bottom_bar"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        >
+        <EditText
+            android:id="@+id/edt_send_msg"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/login_edit_normal"
+            android:layout_toLeftOf="@+id/btn_send"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            />
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:text="Send"
+            android:background="@drawable/btn_bg"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"/>
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_bottom"
+        android:dividerHeight="2dp"
+        android:divider="@null"
+        >
+    </ListView>
+</RelativeLayout>

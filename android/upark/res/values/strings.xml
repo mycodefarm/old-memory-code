@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">UPark</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="location">我的位置</string>
+    
+    <string name="searchLabel">searchlabel</string>
+    <string name="searchHint">搜索</string>
+    
+
+</resources>
